@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Silent Trade — hitesh.eth Awareness Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --fg: #F5F1E8;
+  --fg-muted: rgba(245, 241, 232, 0.55);
+  --fg-faint: rgba(245, 241, 232, 0.25);
+  --accent: #22C55E;
+  --accent-soft: rgba(34, 197, 94, 0.18);
+  --rule: rgba(245, 241, 232, 0.12);
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --serif: 'Playfair Display', 'Times New Roman', serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #1A1A1A;
+  padding: 32px 0;
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Card frame ---- */
+.card {
+  width: 1080px;
+  height: 1350px;
+  margin: 24px auto;
+  background: var(--bg);
+  color: var(--fg);
+  padding: 80px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Chrome ---- */
+.chrome-tl, .chrome-tr, .chrome-bl, .chrome-br {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.chrome-tl { top: 60px; left: 80px; color: var(--fg-muted); }
+.chrome-tr { top: 60px; right: 80px; color: var(--accent); }
+.chrome-bl { bottom: 60px; left: 80px; color: var(--fg-faint); font-weight: 400; letter-spacing: 0.05em; text-transform: none; font-size: 14px; }
+.chrome-br { bottom: 60px; right: 80px; color: var(--fg-faint); font-weight: 400; letter-spacing: 0.05em; text-transform: none; font-size: 14px; font-feature-settings: 'tnum'; }
+
+/* ---- Common type ---- */
+.eyebrow { font-size: 16px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
+.body-lg { font-size: 36px; font-weight: 400; line-height: 1.35; color: var(--fg); }
+.body-md { font-size: 28px; font-weight: 400; line-height: 1.45; color: var(--fg); }
+.body-sm { font-size: 22px; font-weight: 400; line-height: 1.5; color: var(--fg); }
+.muted { color: var(--fg-muted); }
+.caption { font-size: 14px; color: var(--fg-faint); letter-spacing: 0.04em; }
+.accent { color: var(--accent); }
+.serif { font-family: var(--serif); }
+.serif-italic { font-family: var(--serif); font-style: italic; }
+
+/* ---- Type 1: Cover ---- */
+.cover { justify-content: center; }
+.cover .title {
+  font-size: 168px; font-weight: 800; line-height: 0.95;
+  letter-spacing: -0.03em; color: var(--fg);
+  margin-bottom: 56px;
+}
+.cover .title .accent-word { color: var(--accent); }
+.cover .thesis {
+  font-family: var(--serif); font-style: italic;
+  font-size: 38px; line-height: 1.3; color: var(--fg-muted);
+  max-width: 820px;
+}
+
+/* ---- Type 2: Receipts ---- */
+.receipts { justify-content: center; align-items: flex-start; }
+.receipts .number {
+  font-size: 320px; font-weight: 900; line-height: 1.0;
+  letter-spacing: -0.04em; color: var(--accent);
+  margin-bottom: 24px; font-feature-settings: 'tnum';
+}
+.receipts .label {
+  font-size: 38px; font-weight: 500; color: var(--fg);
+  margin-bottom: 56px; max-width: 820px; line-height: 1.25;
+}
+.receipts .explanation {
+  font-size: 26px; line-height: 1.45; color: var(--fg-muted);
+  max-width: 820px;
+}
+.receipts .explanation p { margin-bottom: 14px; }
+.receipts .source {
+  font-size: 14px; color: var(--fg-faint); letter-spacing: 0.04em;
+  margin-top: auto; padding-top: 32px;
+}
+
+/* ---- Type 3: Story ---- */
+.story { justify-content: center; }
+.story .body {
+  font-family: var(--serif); font-size: 38px; line-height: 1.45;
+  color: var(--fg); max-width: 820px;
+}
+.story .body p { margin-bottom: 28px; }
+.story .body p:last-child { color: var(--accent); font-style: italic; }
+
+/* ---- Type 4: Decoding ---- */
+.decoding { justify-content: flex-start; }
+.decoding .headline { font-size: 56px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 56px; max-width: 820px; }
+.decoding .panes { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; flex: 1; }
+.decoding .pane-label { font-size: 16px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+.decoding .pane-a .pane-label { color: var(--fg-faint); }
+.decoding .pane-b .pane-label { color: var(--accent); }
+.decoding .pane-a li { font-size: 23px; line-height: 1.4; color: var(--fg-muted); margin-bottom: 18px; list-style: none; padding-left: 24px; position: relative; }
+.decoding .pane-a li::before { content: '—'; position: absolute; left: 0; }
+.decoding .pane-b li { font-size: 25px; line-height: 1.4; font-weight: 500; color: var(--fg); margin-bottom: 18px; list-style: none; padding-left: 28px; position: relative; }
+.decoding .pane-b li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+.decoding .kicker { font-size: 32px; font-weight: 700; color: var(--accent); margin-top: 48px; line-height: 1.3; max-width: 920px; }
+
+/* ---- Type 5: Archaeology ---- */
+.archaeology { justify-content: flex-start; }
+.archaeology .headline { font-size: 52px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 56px; max-width: 820px; }
+.archaeology .panes { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; flex: 1; }
+.archaeology .pane { display: flex; flex-direction: column; }
+.archaeology .pane-date { font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-faint); margin-bottom: 24px; }
+.archaeology .pane-modern .pane-date { color: var(--accent); }
+.archaeology .pane-ancient { font-family: var(--serif); }
+.archaeology .pane p { font-size: 24px; line-height: 1.45; color: var(--fg); margin-bottom: 18px; }
+.archaeology .pane-ancient p { color: var(--fg-muted); }
+.archaeology .kicker { margin-top: 48px; font-size: 30px; font-weight: 500; color: var(--fg); font-family: var(--serif); font-style: italic; line-height: 1.3; }
+
+/* ---- Type 6: Contrarian ---- */
+.contrarian { justify-content: flex-start; }
+.contrarian .consensus {
+  font-size: 36px; font-weight: 400; color: var(--fg-faint);
+  font-family: var(--serif); font-style: italic;
+  line-height: 1.3; margin-bottom: 32px;
+  text-decoration: line-through; text-decoration-color: var(--fg-faint);
+  max-width: 880px;
+}
+.contrarian .pivot { font-size: 64px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; margin-bottom: 48px; }
+.contrarian .evidence { list-style: none; counter-reset: ev; margin-bottom: 56px; }
+.contrarian .evidence li { font-size: 27px; line-height: 1.4; color: var(--fg); margin-bottom: 24px; padding-left: 60px; position: relative; counter-increment: ev; }
+.contrarian .evidence li::before { content: counter(ev) "."; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.contrarian .conclusion { font-size: 34px; font-weight: 700; color: var(--fg); line-height: 1.3; margin-top: auto; padding-top: 24px; border-top: 1px solid var(--rule); max-width: 880px; }
+
+/* ---- Type 7 (substituted): Scoreboard ---- */
+.scoreboard { justify-content: flex-start; }
+.scoreboard .headline { font-size: 52px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 48px; }
+.scoreboard table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+.scoreboard th { font-size: 13px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); text-align: left; padding: 16px 10px; border-bottom: 1px solid var(--rule); }
+.scoreboard td { font-size: 21px; color: var(--fg); padding: 22px 10px; border-bottom: 1px solid var(--rule); font-feature-settings: 'tnum'; vertical-align: middle; }
+.scoreboard td:first-child { font-weight: 600; }
+.scoreboard tr.winner td { color: var(--accent); font-weight: 600; }
+.scoreboard tr.winner td:first-child::after { content: ' ←'; color: var(--accent); }
+.scoreboard .verdict { font-size: 28px; font-weight: 600; color: var(--fg); line-height: 1.35; margin-top: auto; padding-top: 32px; max-width: 880px; }
+.scoreboard .footnote { font-size: 13px; color: var(--fg-faint); margin-top: 12px; }
+
+/* ---- Type 8: Front-Running ---- */
+.frontrun { justify-content: flex-start; }
+.frontrun .timeline { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; margin-bottom: 56px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; }
+.frontrun .timeline-tick { font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
+.frontrun .timeline-tick.active { color: var(--accent); font-weight: 700; }
+.frontrun .call { font-size: 60px; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: var(--accent); margin-bottom: 56px; max-width: 920px; }
+.frontrun .mechanism p { font-size: 26px; line-height: 1.45; color: var(--fg); margin-bottom: 20px; max-width: 880px; }
+.frontrun .watch { margin-top: auto; padding-top: 32px; border-top: 1px solid var(--rule); }
+.frontrun .watch-label { font-size: 16px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 12px; }
+.frontrun .watch-text { font-size: 28px; line-height: 1.35; color: var(--fg); font-weight: 500; }
+
+/* ---- Type 9: Fork ---- */
+.fork { justify-content: flex-start; }
+.fork .headline { font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 56px; }
+.fork .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; flex: 1; }
+.fork .path { display: flex; flex-direction: column; }
+.fork .path-label { font-size: 16px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.fork .path-name { font-size: 36px; font-weight: 800; color: var(--fg); margin-bottom: 20px; line-height: 1.15; letter-spacing: -0.01em; }
+.fork .path-desc { font-size: 22px; color: var(--fg-muted); line-height: 1.4; margin-bottom: 32px; }
+.fork .path-actions { list-style: none; counter-reset: act; }
+.fork .path-actions li { font-size: 21px; line-height: 1.45; color: var(--fg); margin-bottom: 20px; padding-left: 40px; position: relative; counter-increment: act; }
+.fork .path-actions li::before { content: counter(act); position: absolute; left: 0; top: 2px; width: 26px; height: 26px; background: var(--accent-soft); color: var(--accent); border-radius: 50%; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; line-height: 1; }
+
+/* ---- Type 10: View ---- */
+.view { justify-content: center; }
+.view .eyebrow { font-size: 16px; letter-spacing: 0.32em; }
+.view .body p {
+  font-family: var(--serif); font-size: 42px; line-height: 1.35;
+  color: var(--fg); margin-bottom: 32px; max-width: 880px;
+}
+.view .body p.kicker { color: var(--accent); font-style: italic; font-weight: 700; }
+.view .reassurance {
+  font-size: 22px; color: var(--fg-muted); line-height: 1.45;
+  margin-top: 48px; max-width: 820px; padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+</style>
+</head>
+<body>
+
+<!-- ============ CARD 1: COVER ============ -->
+<div class="card cover">
+  <span class="chrome-tl">№01 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">Report №01 · An Awareness Report</div>
+  <h1 class="title">The <span class="accent-word">Silent</span> Trade</h1>
+  <p class="thesis">While retail watches memes flatline and NFTs get last rites, $315 billion in tokenized dollars is quietly eating finance — and almost nobody on crypto X is talking about it.</p>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 2: RECEIPTS ============ -->
+<div class="card receipts">
+  <span class="chrome-tl">№02 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">The Receipts</div>
+  <div class="number">$33T</div>
+  <div class="label">Stablecoin transaction volume in 2025. That's 2x what Visa moved.</div>
+  <div class="explanation">
+    <p>Visa did $16.7 trillion in fiscal 2025. Stablecoins did roughly twice that — $33 trillion, up 72% year over year.</p>
+    <p>By Q1 2026, stablecoin market cap hit a record $315B even as the broader crypto market shed 20%.</p>
+    <p>The biggest payment rail in the world is no longer Visa or Mastercard. It's a smart contract.</p>
+  </div>
+  <div class="source">Sources: Artemis · Bloomberg · Stablecoin Insider Q1 2026 Report</div>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 3: STORY ============ -->
+<div class="card story">
+  <span class="chrome-tl">№03 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow serif-italic">A scene</div>
+  <div class="body">
+    <p>It's a Tuesday in Mumbai. A 27-year-old refreshes Pump.fun for the eleventh time today.</p>
+    <p>He misses the meme that 100x'd by 14 minutes. He chases the next one. Down 60% by dinner.</p>
+    <p>Across town, a corporate treasurer parks ₹4 crore in tokenized US Treasuries via Ondo. Earns 5.3% APY. Sleeps fine.</p>
+    <p>Same blockchain. Same week. Different game.</p>
+  </div>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 4: DECODING ============ -->
+<div class="card decoding">
+  <span class="chrome-tl">№04 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">The Decoding</div>
+  <h2 class="headline">The bull-market story you're being sold.</h2>
+  <div class="panes">
+    <div class="pane-a">
+      <div class="pane-label">They Say</div>
+      <ul>
+        <li>NFTs are back — BAYC up 81% in a month</li>
+        <li>Memes are where the alpha lives</li>
+        <li>Pump.fun launchpads are the new ICOs</li>
+        <li>Find the next narrative before it pumps</li>
+      </ul>
+    </div>
+    <div class="pane-b">
+      <div class="pane-label">Actually</div>
+      <ul>
+        <li>Total NFT mcap fell 68% YoY to $2.7B</li>
+        <li>Memecoin mcap bled from $150B to $34B</li>
+        <li>NFT Paris cancelled. Nifty Gateway shut.</li>
+        <li>Stablecoins absorbed 75% of all crypto trading volume</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kicker">The bull market already ran. It just wore a suit instead of a frog.</p>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 5: ARCHAEOLOGY ============ -->
+<div class="card archaeology">
+  <span class="chrome-tl">№05 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">The Pattern</div>
+  <h2 class="headline">A stablecoin is just a hundi with a smart contract.</h2>
+  <div class="panes">
+    <div class="pane pane-ancient">
+      <div class="pane-date">Marwari trading networks · c. 1700</div>
+      <p>A merchant in Surat issues a hundi for ₹1,000.</p>
+      <p>His cousin in Aden honours it the same week — no bank, no ledger, no king.</p>
+      <p>The trust network is the rail. The paper is the token. Capital moves where the state can't watch.</p>
+    </div>
+    <div class="pane pane-modern">
+      <div class="pane-date">USDT / USDC · 2026</div>
+      <p>A trader in Mumbai mints USDT against rupees.</p>
+      <p>His supplier in Lagos receives it in 4 minutes — no SWIFT, no correspondent bank, no permission.</p>
+      <p>The blockchain is the rail. The token is the hundi. Capital moves where the state can't watch.</p>
+    </div>
+  </div>
+  <p class="kicker">India invented programmable money in 1700. We just rebuilt it on Solidity.</p>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 6: CONTRARIAN ============ -->
+<div class="card contrarian">
+  <span class="chrome-tl">№06 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">The Heresy</div>
+  <p class="consensus">"The next 100x is in memes, AI agents, or some L2 nobody has heard of yet. Yield is for boomers."</p>
+  <div class="pivot">But —</div>
+  <ol class="evidence">
+    <li>Tokenized RWAs went from $8.6B to $26.4B in 12 months. 300% in a sector you call boring.</li>
+    <li>BlackRock BUIDL alone holds $2.9B. Larry Fink wrote tokenization is "the internet in 1996."</li>
+    <li>MakerDAO (now Sky) earns 60% of its protocol revenue from real-world assets. Not memes.</li>
+    <li>Tokenized stocks went from $2M to $487M in 9 months. Circle alone is $171M of that.</li>
+    <li>Prediction markets did $25.7B in March 2026 — up 13x year-over-year. Silent.</li>
+  </ol>
+  <p class="conclusion">The boring trade is the alpha trade. It always was.</p>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 7: SCOREBOARD ============ -->
+<div class="card scoreboard">
+  <span class="chrome-tl">№07 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">The Scoreboard</div>
+  <h2 class="headline">Five narratives. One is silently absorbing the money.</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Narrative</th>
+        <th>Mcap / TVL</th>
+        <th>YoY Flow</th>
+        <th>Wash %</th>
+        <th>Catalyst</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>NFTs (PFP)</td>
+        <td>$2.7B</td>
+        <td>−68%</td>
+        <td>~70%</td>
+        <td>None</td>
+        <td>2/10</td>
+      </tr>
+      <tr>
+        <td>Memecoins</td>
+        <td>$33.7B</td>
+        <td>−78%</td>
+        <td>High</td>
+        <td>None</td>
+        <td>3/10</td>
+      </tr>
+      <tr>
+        <td>AI x Crypto</td>
+        <td>~$25B</td>
+        <td>+45%</td>
+        <td>Med</td>
+        <td>Soft</td>
+        <td>5/10</td>
+      </tr>
+      <tr>
+        <td>Prediction Mkts</td>
+        <td>$25.7B/mo vol</td>
+        <td>+1300%</td>
+        <td>~30%*</td>
+        <td>2026 World Cup</td>
+        <td>7/10</td>
+      </tr>
+      <tr class="winner">
+        <td>Stablecoins + RWA</td>
+        <td>$315B + $26B</td>
+        <td>+200%</td>
+        <td>None</td>
+        <td>GENIUS Act, BUIDL, ARC</td>
+        <td>9/10</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="footnote">* Wash share contested between Kalshi and Polymarket. Pure trading volume estimates only.</p>
+  <p class="verdict">The trade nobody posts about is the trade everyone with a balance sheet is making.</p>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 8: FRONT-RUNNING ============ -->
+<div class="card frontrun">
+  <span class="chrome-tl">№08 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">The Call</div>
+  <div class="timeline">
+    <span class="timeline-tick">Now</span>
+    <span class="timeline-tick">6mo</span>
+    <span class="timeline-tick active">12mo</span>
+    <span class="timeline-tick">24mo</span>
+    <span class="timeline-tick">36mo</span>
+  </div>
+  <h2 class="call">By May 2027: stablecoin mcap crosses $500B and tokenized RWAs cross $75B.</h2>
+  <div class="mechanism">
+    <p>The GENIUS Act finalises in 2026. Banks get the green signal to issue stablecoins natively.</p>
+    <p>India's ARC stablecoin goes live. Every emerging market follows with a sovereign-backed version.</p>
+    <p>Tokenized treasuries become the default DeFi collateral. USDT-style payment use is the floor, not the ceiling.</p>
+  </div>
+  <div class="watch">
+    <div class="watch-label">Watch For</div>
+    <p class="watch-text">JPMorgan or Citi issuing a public-chain stablecoin. That's the bell.</p>
+  </div>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 9: FORK ============ -->
+<div class="card fork">
+  <span class="chrome-tl">№09 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">The Choice</div>
+  <h2 class="headline">You've got two clean trades here. 👇</h2>
+  <div class="paths">
+    <div class="path">
+      <div class="path-label">Path A</div>
+      <div class="path-name">The Yield Stacker</div>
+      <p class="path-desc">You stop chasing 100x and start compounding 5%. Boring. Effective.</p>
+      <ol class="path-actions">
+        <li>Park 30–50% of your stack in Ondo USDY or BlackRock BUIDL exposure (5.3% on T-bills).</li>
+        <li>Use sUSDe or sUSDS for the DeFi yield layer (8–14%, higher risk).</li>
+        <li>Hold ETH and SOL as the rails — these are the chains the RWA flow lives on.</li>
+        <li>Skip memes entirely. If you can't, cap them at 5% as your "lottery line".</li>
+      </ol>
+    </div>
+    <div class="path">
+      <div class="path-label">Path B</div>
+      <div class="path-name">The Picks &amp; Shovels</div>
+      <p class="path-desc">You don't earn the yield — you bet on who collects the toll.</p>
+      <ol class="path-actions">
+        <li>Long the rail tokens: ETH, SOL, LINK (oracles), MKR/SKY (RWA-backed DAI issuer).</li>
+        <li>Track the ARC India launch — Polygon (POL) is the infra bet for INR-stablecoin flow.</li>
+        <li>Watch prediction-market infra: a POLY token launch is being telegraphed openly.</li>
+        <li>Position in tokenized-stock distribution plays — Backed Finance, Ondo, Securitize-adjacent.</li>
+      </ol>
+    </div>
+  </div>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+<!-- ============ CARD 10: VIEW ============ -->
+<div class="card view">
+  <span class="chrome-tl">№10 / 10</span>
+  <span class="chrome-tr">CRYPTO</span>
+  <div class="eyebrow">The View</div>
+  <div class="body">
+    <p>Every cycle has a loud trade and a silent trade. The loud one is what fills your timeline. The silent one is what fills BlackRock's balance sheet.</p>
+    <p>This cycle, the loud trade is dying — memes bled 78%, NFTs lost their conferences. The silent trade is the dollar itself, just on a different rail.</p>
+    <p class="kicker">If you're picking between memes and NFTs in May 2026, you're picking between two corpses. The money already left.</p>
+  </div>
+  <p class="reassurance">If you've read this report, you're earlier than 99% of Indian retail on the trade institutions are already deep into. I'm not offering financial advice — just the lens. Choose your coins carefully. Control your FOMO.</p>
+  <span class="chrome-bl">hitesh.eth · @hmalviya9</span>
+  <span class="chrome-br">2026.05</span>
+</div>
+
+</body>
+</html>
